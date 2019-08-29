@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <link rel="stylesheet" link type="text/css" href="proekt.css">
+    <title>Proekt</title>
+</head>
+<body>
+        <div class="input">
+                Name: <input type="text" placeholder=" Event name" id="event-name" class ="inputF" value="">
+                Date: <input type="text" placeholder=" Event date" id="event-date" class ="inputF" value="">
+            </br>
+        </br>
+                Location: <input type="text" placeholder=" Event location" id="event-location" class ="inputF" value="">
+                Image "URL": <input type="text" placeholder=" Event image" id="event-image" class ="inputF" value="">
+            </br>
+        </br>
+                Parter: <input type="text" placeholder=" Parter price" id="parter-price" class ="inputP" value="">
+                Fan Pit: <input type="text" placeholder=" Fan pit price" id="FanPit-price" class ="inputP" value="">
+                VIP: <input type="text" placeholder=" Vip price" id="vip-price" class ="inputP" value="">
+            </br>
+        </br>
+                <button id = "write">Make Event</button>
+            </div>
+    <div id="master" class="flex">
+            <div class="event-holder flex"><h1 class="e-name">some event</h1><h3 class="e-date">20.20.2020</h3><div class="e-location-holder flex"><h2 class="e-location">some location</h2><div id = "cart" class="buy-button flex"><i class="fas fa-shopping-cart"></i></div></div><div class="e-img-holder flex"><img class="e-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUg72GG7ZE7Vw7WnmOTHWEk4ppP02h3wl_rozVW13rvSV0VutI"></div><div class="price-holder flex"><div class="parter-holder flex"><input type="radio" name="radioBtn" id="parter-check" class="checkbox"><p class="prices">Parter 10 eur</p></div><div class="fanpit-holder flex"><input type="radio" name="radioBtn" id="fanpit-check" class="checkbox"><p class="prices">Fan Pit 20 eur</p></div><div class="vip-holder flex"><input type="radio" name="radioBtn" id="vip-check" class="checkbox"><p class="prices">VIP 50 eur</p></div></div></div>
+            <div class="event-holder flex"><h1 class="e-name">some event</h1><h3 class="e-date">20.20.2020</h3><div class="e-location-holder flex"><h2 class="e-location">some location</h2><div id = "cart" class="buy-button flex"><i class="fas fa-shopping-cart"></i></div></div><div class="e-img-holder flex"><img class="e-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUg72GG7ZE7Vw7WnmOTHWEk4ppP02h3wl_rozVW13rvSV0VutI"></div><div class="price-holder flex"><div class="parter-holder flex"><input type="radio" name="radioBtn" id="parter-check" class="checkbox"><p class="prices">Parter 10 eur</p></div><div class="fanpit-holder flex"><input type="radio" name="radioBtn" id="fanpit-check" class="checkbox"><p class="prices">Fan Pit 20 eur</p></div><div class="vip-holder flex"><input type="radio" name="radioBtn" id="vip-check" class="checkbox"><p class="prices">VIP 50 eur</p></div></div></div>
+        
+    </div>
+    <script
+ src="https://code.jquery.com/jquery-3.4.1.min.js"
+ integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+ crossorigin="anonymous"></script>
+    <script src="Utils.js"></script>
+    <script src="prices.js"></script>
+    <script src="event.js"></script>
+    <script src="popups.js"></script>
+    <script src="dashboardjq.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
