@@ -6,7 +6,9 @@ var usersArray = [{
         UserEmail: 'userEmail'
         
     }];
+users=[]
 localStorage.setItem("users", JSON.stringify(usersArray));
+localStorage.setItem("users", JSON.stringify(users));
 setNewUser = (userName, userPass, userEmail) => {
     var newUser = {
         UserName: userName,
@@ -14,7 +16,7 @@ setNewUser = (userName, userPass, userEmail) => {
         UserEmail: userEmail
         
     }
-    users=[]
+    
     // if(!checkUser(userName,userEmail)){
     users.push(newUser);
     alert("Welcome " + newUser.UserName.toUpperCase());
