@@ -8,7 +8,7 @@ function ReadyBands() {
         var bandList = [];
         var listBands = someBands.similarartists.artist;
 
-        for (var i = 0; i < 21; i++) {
+        for (var i = 0; i < 24; i++) {
             var items = {
                 name: listBands[i].name,
                 imgSrc: listBands[i].image[2]['#text']
@@ -17,12 +17,7 @@ function ReadyBands() {
         }
         // localStorage.setItem("bandData", JSON.stringify(bandList));
         return bandList
-        
-        
-
     }
-
-    
     this.getReadyAlbumCover = async (artistName)=>{
         await this.readyBands.setBandAlbumCovers(artistName);
 
@@ -30,10 +25,8 @@ function ReadyBands() {
 
         var albumCover = {ImgSrc: someAlbumCover.topalbums.album[0].image[3]['#text']};
         
-        localStorage.setItem("albumCover", JSON.stringify(albumCover));
+        
         return albumCover.ImgSrc
-
-
     }
 
 
@@ -44,20 +37,3 @@ function ReadyBands() {
 
 }
 
-// function Bands(){
-//     this.finalBands = new ReadyBands();
-
-//     var firstband = JSON.parse(localStorage.getItem("bandsData"));
-
-//     this.getFinalistOfBands = async ()=>{
-//         for(var i=0 ;i <firstband.length; i++){
-//             // console.log(firstband[i].imgSrc);
-//             // console.log(firstband[i].name);
-
-
-//         }
-//         console.log(firstband.length);
-//         return firstband
-//     }
-
-// }

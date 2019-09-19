@@ -23,36 +23,36 @@ function EventCreator() {
         var eventHolder = $('<div>').attr('class', 'event-holder event-holder-' + indexMaker, 'flex');
         var eventNumber = $('<p>').attr('class', 'eNumber').text("#" + indexMaker).css({ 'display': 'none' });
         var eName = $('<h1>').attr('class', 'e-name e-name-' + indexMaker).text(eventName);
-        var eDate = $('<h3>').attr('class', 'e-date e-date-' + indexMaker).text(eventDate);
+        var eDate = $('<h3>').attr('class', 'e-date e-date-' + indexMaker).text(eventDate).prepend($('<i class="fas fa-calendar-alt"></i>'));
 
         var eLocationHolder = $('<div>').attr('class', 'e-location-holder flex');
-        var eLocation = $('<h2>').attr('class', 'e-location e-location-' + indexMaker).text(eventLocation);
+        var eLocation = $('<h2>').attr('class', 'e-location e-location-' + indexMaker).text(eventLocation).prepend($('<i class="fas fa-map-marker-alt"></i>'));
         var qty = $('<input type="number" min="1" max="10" />').attr('id', 'qty-' + indexMaker).val(1);
         var buyButton = $('<button>BUY</button>').attr('class', 'buy-button flex').attr('id', 'cart-' + indexMaker);
 
         var eImgHolder = $('<div>').attr('class', 'e-img-holder flex');
-        var eImg = $('<img>').attr('class', 'e-img').attr('src', eventImage);
+        var eImg = $('<img>').attr('class', 'e-img e-img-'+indexMaker).attr('src', eventImage);
 
         var priceHolder = $('<div>').attr('class', 'price-holder flex price-holder-' + indexMaker);
 
-        var eur = $('<p>').attr('class', 'eur').text(' eur');
-        var eur2 = $('<p>').attr('class', 'eur').text(' eur');
-        var eur3 = $('<p>').attr('class', 'eur').text(' eur');
+        // var eur = $('<p>').attr('class', 'eur').text(' eur');
+        // var eur2 = $('<p>').attr('class', 'eur').text(' eur');
+        // var eur3 = $('<p>').attr('class', 'eur').text(' eur');
         var parName = $('<p>').attr('class', 'pNames').text('Parter ');
         var fanName = $('<p>').attr('class', 'pNames').text('Fan Pit ');
         var vipName = $('<p>').attr('class', 'pNames').text('Vip ');
 
         var partereHolder = $('<div>').attr('class', 'prices-holder flex');
         var pPcheck = $('<input type="radio" name="radioBtn" />').attr('id', 'parter-check-' + indexMaker).attr('class', 'checkbox-' + $(".event-holder").length);
-        var pPrice = $('<p>').attr('class', 'Pprices-' + indexMaker).text(parterPrice).prepend(parName).append(eur);
+        var pPrice = $('<p>').attr('class', 'Pprices-' + indexMaker).text(parterPrice).prepend(parName).append($('<i class="fas fa-euro-sign"></i>'));
 
         var fanpitHolder = $('<div>').attr('class', 'prices-holder flex');
         var fPcheck = $('<input type="radio" name="radioBtn" />').attr('id', 'fanpit-check-' + indexMaker).attr('class', 'checkbox-' + $(".event-holder").length);
-        var fPPrice = $('<p>').attr('class', 'Fprices-' + indexMaker).text(fanPitPrice).prepend(fanName).append(eur2);
+        var fPPrice = $('<p>').attr('class', 'Fprices-' + indexMaker).text(fanPitPrice).prepend(fanName).append($('<i class="fas fa-euro-sign"></i>'));
 
         var vipHolder = $('<div>').attr('class', 'prices-holder flex');
         var vPcheck = $('<input type="radio" name="radioBtn" />').attr('id', 'vip-check-' + indexMaker).attr('class', 'checkbox-' + $(".event-holder").length);
-        var vPrice = $('<p>').attr('class', 'Vprices-' + indexMaker).text(vipPrice).prepend(vipName).append(eur3);
+        var vPrice = $('<p>').attr('class', 'Vprices-' + indexMaker).text(vipPrice).prepend(vipName).append($('<i class="fas fa-euro-sign"></i>'));
 
 
         eventHolder.append(eName);
@@ -103,11 +103,11 @@ function EventCreator() {
                 var datePop = $('.e-date-' + splitRezClass[3]).text();
                 console.log('.price-holder-' + splitRezClass[3]);
                 var selector= $('.price-holder-' + splitRezClass[3]);
-                
+                var imgPop = $('.e-img-' + splitRezClass[3]).attr('src');
                 
                 
                 if (checkEmptyInputRadio(selector)) {
-                    buyPopUp(totalTicketCost, namePop, locationPop, datePop);
+                    buyPopUp(totalTicketCost, namePop, locationPop, datePop,imgPop);
 
                     return totalTicketCost;
                 }
@@ -120,7 +120,7 @@ function EventCreator() {
     this.bands = async () => {
         var bands = this.finalBands = new ReadyBands();
         var firstband = await this.finalBands.getReadyBands();
-
+    eventWrapper.append($('<h3>').attr('class', 'head').text('EVENTS').css({'width':'100%'}))
         for (var i = 0; i < firstband.length; i++) {
             var randomDay = getRandomNumber(1, 30);
             var randomMonth = '0' + getRandomNumber(1, 9);
@@ -142,36 +142,36 @@ function EventCreator() {
             var eventHolder = $('<div>').attr('class', 'event-holder event-holder-' + indexMaker, 'flex');
             var eventNumber = $('<p>').attr('class', 'eNumber').text('#' + indexMaker).css({ 'display': 'none' });
             var eName = $('<h1>').attr('class', 'e-name e-name-' + indexMaker).text(firstband[i].name);
-            var eDate = $('<h3>').attr('class', 'e-date e-date-' + indexMaker).text(randomDate);
+            var eDate = $('<h3>').attr('class', 'e-date e-date-' + indexMaker).text(randomDate).prepend($('<i class="fas fa-calendar-alt"></i>'));
 
             var eLocationHolder = $('<div>').attr('class', 'e-location-holder flex');
-            var eLocation = $('<h2>').attr('class', 'e-location e-location-' + indexMaker).text(randomCity);
+            var eLocation = $('<h2>').attr('class', 'e-location e-location-' + indexMaker).text(randomCity).prepend($('<i class="fas fa-map-marker-alt"></i>'));
             var qty = $('<input type="number" min="1" max="10" />').attr('id', 'qty-' + indexMaker).val(1);
             var buyButton = $('<button>BUY</button>').attr('class', 'buy-button flex').attr('id', 'cart-' + indexMaker);
 
             var eImgHolder = $('<div>').attr('class', 'e-img-holder flex');
-            var eImg = $('<img>').attr('class', 'e-img').attr('src', bandImage);
+            var eImg = $('<img>').attr('class', 'e-img e-img-'+indexMaker).attr('src', bandImage);
 
             var priceHolder = $('<div>').attr('class', 'price-holder flex price-holder-' + indexMaker);
 
-            var eur = $('<p>').attr('class', 'eur').text(' eur');
-            var eur2 = $('<p>').attr('class', 'eur').text(' eur');
-            var eur3 = $('<p>').attr('class', 'eur').text(' eur');
+            // var eur = $('<p>').attr('class', 'eur').text(' eur');
+            // var eur2 = $('<p>').attr('class', 'eur').text(' eur');
+            // var eur3 = $('<p>').attr('class', 'eur').text(' eur');
             var parName = $('<p>').attr('class', 'pNames').text('Parter ');
             var fanName = $('<p>').attr('class', 'pNames').text('Fan Pit ');
             var vipName = $('<p>').attr('class', 'pNames').text('Vip ');
 
             var partereHolder = $('<div>').attr('class', 'prices-holder flex prices-holder');
             var pPcheck = $('<input type="radio" name="radioBtn" />').removeAttr("checked").attr('id', 'parter-check-' + indexMaker).attr('class', 'checkbox-' + $(".event-holder").length);
-            var pPrice = $('<p>').attr('class', 'Pprices-' + indexMaker).text(parter).prepend(parName).append(eur);
+            var pPrice = $('<p>').attr('class', 'Pprices-' + indexMaker).text(parter).prepend(parName).append($('<i class="fas fa-euro-sign"></i>'));
 
             var fanpitHolder = $('<div>').attr('class', 'prices-holder flex');
             var fPcheck = $('<input type="radio" name="radioBtn" checked="uchecked"/>').attr('id', 'fanpit-check-' + indexMaker).attr('class', 'checkbox-' + $(".event-holder").length);
-            var fPPrice = $('<p>').attr('class', 'Fprices-' + indexMaker).text(fan).prepend(fanName).append(eur2);
+            var fPPrice = $('<p>').attr('class', 'Fprices-' + indexMaker).text(fan).prepend(fanName).append($('<i class="fas fa-euro-sign"></i>'));
 
             var vipHolder = $('<div>').attr('class', 'prices-holder flex');
             var vPcheck = $('<input type="radio" name="radioBtn" checked="uchecked"/>').attr('id', 'vip-check-' + indexMaker).attr('class', 'checkbox-' + $(".event-holder").length);
-            var vPrice = $('<p>').attr('class', 'Vprices-' + indexMaker).text(vip).prepend(vipName).append(eur3);
+            var vPrice = $('<p>').attr('class', 'Vprices-' + indexMaker).text(vip).prepend(vipName).append($('<i class="fas fa-euro-sign"></i>'));
 
 
             eventHolder.append(eName);
@@ -217,13 +217,14 @@ function EventCreator() {
                 var namePop = $('.e-name-' + splitRezClass[3]).text();
                 var locationPop = $('.e-location-' + splitRezClass[3]).text();
                 var datePop = $('.e-date-' + splitRezClass[3]).text();
+                var imgPop = $('.e-img-' + splitRezClass[3]).attr('src');
                 console.log($(splitRezClass)[3]);
                 var selector= $('.price-holder-' + splitRezClass[3]);
                 
                 
                 
                 if (checkEmptyInputRadio(selector)) {
-                    buyPopUp(totalTicketCost, namePop, locationPop, datePop);
+                    buyPopUp(totalTicketCost, namePop, locationPop, datePop,imgPop);
 
                     return totalTicketCost;
                 }

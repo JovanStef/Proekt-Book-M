@@ -1,41 +1,36 @@
-var master = $('#master');
+var master = $('<div>').attr('id', 'master')
+
+$('body').append(master);
+
+
 var eventWrapper = $('#wrapper');
 
 checkEmptyInput = (parrentSelector) => {
     var inputFields = $(parrentSelector).children(':text');
     for (var i = 0; i < inputFields.length; i++) {
         if ($(inputFields[i]).val() !== '') {
-            console.log($(inputFields[i]).val());
-            console.log(inputFields[i]);
         }
         else {
             alert("All fields are required");
             return false
         }
     }
-    console.log('ALL GOOD');
     return true
 }
 
 checkEmptyInputRadio = (parrentSelector) => {
     var inputFields = $(parrentSelector).children("div:has(p)").children(":radio");
     for (var i = 0; i < inputFields.length; i++) {
-         console.log(inputFields[i]);
+        console.log(inputFields[i]);
         if ($(inputFields[i]).is(':checked')) {
             console.log('ALL GOOD');
             return true
         }
         else {
-           
-            
         }
-        
-
     }
     console.log('Please choose your ticket type');
-        alert("Please choose your ticket type");
-    // console.log('ALL GOOD');
-    
+    alert("Please choose your ticket type");
 }
 
 
@@ -46,13 +41,12 @@ function validateEmail(email) {
         console.log('false');
         return false;
     } else {
-        console.log('true');
+       
         return true;
     }
 }
 
 function createEventPopUp() {
-
     var createEventPopUpHolder = $('<div>').attr('class', 'input').attr('id', 'event-dialog-holder').css({ 'display': 'none' });
     var eventNameInput = $('<input type="text" placeholder=" Event name"/>').attr('id', 'event-name').attr('class', 'inputF');
     var eventNameDateInput = $('<input type="text" placeholder=" Event date"/>').attr('id', 'event-date').attr('class', 'inputF');
@@ -85,7 +79,7 @@ function createEventPopUp() {
 
 
 
-function buyPopUp(totalcost, eventName, eventLocation, eventDate) {
+function buyPopUp(totalcost, eventName, eventLocation, eventDate, eventImg) {
     var curtain = $('<div>').attr('class', 'curtain flex');
     var buyPopupHolder = $('<div>').attr('id', 'buy-popup-holder').attr('class', 'input flex').css({ 'display': 'block' });
     var text = $('<p>').text('Please provide valid info and confirm your purchase');
@@ -94,11 +88,16 @@ function buyPopUp(totalcost, eventName, eventLocation, eventDate) {
     var inputEmail = $('<input type="text" placeholder=" e-mail"/>').attr('class', 'inputF').attr('id', 'email');
     var br = $('<hr>');
 
-    var totalTicketCost = $('<h3>').attr('class', 'flex').text('Total ticket cost: ' + totalcost + ' eur');
-    var eName = $('<h3>').attr('class', 'flex').text('Event: ' + eventName);
-    var eLocation = $('<h3>').attr('class', 'flex').text('Location: ' + eventLocation);
-    var eDate = $('<h3>').attr('class', 'flex').text('Date: ' + eventDate);
+    var buyWrapper = $('<div>').attr('class', 'buy-Wrapper flex');
+    var buyPopUpInfoHolder = $('<div>').attr('class', 'buy-PopUp-Info-Holder flex b50');
+    var totalTicketCost = $('<h3>').attr('class', 'flex').text('Total ticket cost: ' + totalcost + ' eur').prepend($('<i class="fas fa-euro-sign"></i>'));
+    var eName = $('<h3>').attr('class', 'flex').text('Event: ' + eventName).prepend($('<i class="fas fa-fist-raised"></i>'));
+    var eLocation = $('<h3>').attr('class', 'flex').text('Location: ' + eventLocation).prepend($('<i class="fas fa-map-marker-alt"></i>'));
+    var eDate = $('<h3>').attr('class', 'flex').text('Date: ' + eventDate).prepend($('<i class="fas fa-calendar-alt"></i>'));
     var close = $('<div>').attr('class', 'close-btn-buy flex').attr('id', 'close-buy').html('<i class="fas fa-times-circle"></i>').css({ 'width': '100%' });
+
+    var buyPopUpImgHolder = $('<div>').attr('class', 'buy-PopUp-img-Holder flex b50');
+    var buyPopUpImg = $('<img>').attr('class', 'buy-PopUp-Img').attr('src', eventImg);
 
     var proceed = $('<button>Confirm</button>').attr('id', 'confirm');
 
@@ -108,9 +107,10 @@ function buyPopUp(totalcost, eventName, eventLocation, eventDate) {
 
     proceed.on('click', () => {
         var selector = $(buyPopupHolder);
-        var email = $('#email').val();
+        var email = inputEmail.val();
         console.log(selector)
-        console.log(inputEmail)
+        console.log(inputEmail);
+        console.log(email);
         if (checkEmptyInput(selector) && validateEmail(email)) {
             window.location = "https://www.paypal.com/us/home"
             curtain.css({ 'display': 'none' });
@@ -121,10 +121,18 @@ function buyPopUp(totalcost, eventName, eventLocation, eventDate) {
     buyPopupHolder.append(close);
     buyPopupHolder.append(text);
 
-    buyPopupHolder.append(totalTicketCost);
-    buyPopupHolder.append(eName);
-    buyPopupHolder.append(eLocation);
-    buyPopupHolder.append(eDate);
+    buyPopUpInfoHolder.append(totalTicketCost);
+
+    buyPopUpInfoHolder.append(eName);
+    buyPopUpInfoHolder.append(eLocation);
+    buyPopUpInfoHolder.append(eDate);
+
+    buyWrapper.append(buyPopUpInfoHolder);
+
+    buyPopUpImgHolder.append(buyPopUpImg);
+    buyWrapper.append(buyPopUpImgHolder);
+
+    buyPopupHolder.append(buyWrapper);
 
     buyPopupHolder.append(inputSurname);
     buyPopupHolder.append(inputName);
@@ -140,15 +148,18 @@ function buyPopUp(totalcost, eventName, eventLocation, eventDate) {
 function logInInput() {
     var curtain = $('<div>').attr('class', 'curtain-L curtain flex').css({ 'display': 'none' });
     var logInInputHolder = $('<div>').attr('class', 'input logIn-Input-Holder flex').css({ 'display': 'block' });
-    var br = $('<p>').text(' '); var br1 = $('<p>').text(' '); var br2 = $('<p>').text(' ');
+    var br = $('<p>').text(' '); var br1 = $('<p>').text(' '); var br2 = $('<p>').text(' '); var br3 = $('<p>').text(' '); var br4 = $('<p>').text(' ');
     var text = $('<p>').text('Log in to add new events');
     var user = $('<input type="text" placeholder=" Username"/>').attr('class', 'inputF').attr('id', 'User-Name-Input');
     var password = $('<input type="password" placeholder=" Password"/>').attr('class', 'inputF').attr('id', 'PasswordInput');
     var close = $('<div>').attr('class', 'close-btn-buy flex').attr('id', 'close-buy').html('<i class="fas fa-times-circle"></i>').css({ 'width': '100%' });
 
     var proceed = $('<button>Log In</button>').attr('id', 'log-In');
+    var hr = $('<hr>');
 
-    var elementsToBeAppended = [close, text, br, user, br1, password, br2, proceed];
+    var signUp = $('<p>').attr('class', 'sign-up').text('Sign Up').css('cursor', 'pointer');
+
+    var elementsToBeAppended = [close, text, br, user, br1, password, br2, proceed, br3, hr, br4, signUp];
 
     for (var i = 0; i < elementsToBeAppended.length; i++) {
         logInInputHolder.append(elementsToBeAppended[i]);
@@ -161,6 +172,33 @@ function logInInput() {
         curtain.css({ 'display': 'none' })
     });
 
+
+
+}
+function signUpInput() {
+    var curtain = $('<div>').attr('class', 'curtain-S curtain flex').css({ 'display': 'none' });;
+    var logInInputHolder = $('<div>').attr('class', 'input signIn-Input-Holder flex').css({ 'display': 'block' });
+    var br = $('<p>').text(' '); var br1 = $('<p>').text(' '); var br2 = $('<p>').text(' '); var br3 = $('<p>').text(' '); var br4 = $('<p>').text(' ');
+    var text = $('<p>').text('Sign in with your info');
+    var user = $('<input type="text" placeholder=" Username"/>').attr('class', 'inputF').attr('id', 'User-Name-Input-signIn');
+    var password = $('<input type="password" placeholder=" Password"/>').attr('class', 'inputF').attr('id', 'PasswordInput-signIn');
+    var email = $('<input type="text" placeholder=" e-mail"/>').attr('class', 'inputF').attr('id', 'email-signIn');
+    var close = $('<div>').attr('class', 'close-btn-buy flex').attr('id', 'close-buy').html('<i class="fas fa-times-circle"></i>').css({ 'width': '100%' });
+
+    var proceed = $('<button>Sign Up</button>').attr('id', 'Sign-Up');
+
+    var elementsToBeAppended = [close, text, br, user, br1, password, br2, email, br3, proceed];
+
+    for (var i = 0; i < elementsToBeAppended.length; i++) {
+        logInInputHolder.append(elementsToBeAppended[i]);
+    }
+    curtain.append(logInInputHolder);
+    master.append(curtain);
+
+    close.on('click', () => {
+        logInInputHolder.children(':input').val('');
+        curtain.css({ 'display': 'none' })
+    });
 
 
 }
